@@ -38,7 +38,10 @@ const productLinks = [
   { name: "EzeePay",    href: "/products/ezeepay" },
   { name: "Zoki",       href: "/products/zoki" },
   { name: "Mobilocker", href: "/products/mobilocker" },
-  { name: "Cashlo", href: "https://cashlo-final-fxmt.vercel.app/" },
+  { name: "Cashlo",     href: "https://cashlo-final-fxmt.vercel.app/" },
+  { name: "Skylist",    href: null },
+  { name: "Adkea",      href: null },
+  { name: "Creditlo",   href: null },
 ];
 
 const certifications = [
@@ -121,9 +124,13 @@ export default function Footer() {
         <div>
           <div className="footer-col-title">Products</div>
           <div className="footer-links">
-            {productLinks.map((l) => (
-              <Link key={l.name} href={l.href} className="footer-link">{l.name}</Link>
-            ))}
+            {productLinks.map((l) =>
+              l.href ? (
+                <Link key={l.name} href={l.href} className="footer-link">{l.name}</Link>
+              ) : (
+                <span key={l.name} className="footer-link footer-link--soon">{l.name}</span>
+              )
+            )}
           </div>
         </div>
 
