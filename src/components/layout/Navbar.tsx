@@ -169,7 +169,7 @@ export default function Navbar() {
 
                         const inner = (
                           <>
-                            <div className={`dropdown-simple-icon${item.wordmark ? " dropdown-simple-icon--wide" : ""}`}>
+                            <div className="dropdown-simple-icon">
                               <img src={item.logo} alt={item.name} />
                             </div>
                             <div>
