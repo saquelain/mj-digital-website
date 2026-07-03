@@ -1,42 +1,66 @@
-import { SiMongodb, SiFlutter, SiFirebase, SiWhatsapp, SiReact, SiNextdotjs, SiNodedotjs, SiDocker, SiRazorpay } from "react-icons/si";
+"use client";
 
-const iconLogos = [
-  { name: "MongoDB", Icon: SiMongodb },
-  { name: "Flutter", Icon: SiFlutter },
-  { name: "Firebase", Icon: SiFirebase },
-  { name: "WhatsApp", Icon: SiWhatsapp },
-  { name: "React", Icon: SiReact },
-  { name: "Next.js", Icon: SiNextdotjs },
-  { name: "Node.js", Icon: SiNodedotjs },
-  { name: "Docker", Icon: SiDocker },
-  { name: "Razorpay", Icon: SiRazorpay },
-];
+import { useState } from "react";
 
 const imageLogos = [
-  { name: "AWS", src: "/logos/aws.svg" },
-  { name: "Twilio", src: "/logos/twilio.svg" },
+  { name: "Razorpay", src: "/logos/razorpay.svg" },
   { name: "Cashfree", src: "/logos/cashfree.svg" },
+  { name: "PhonePe", src: "/logos/phonepe.svg" },
+  { name: "Stripe", src: "/logos/stripe.svg" },
+  { name: "PayU", src: "/logos/payu.svg" },
+  { name: "CCAvenue", src: "/logos/ccavenue.svg" },
+  { name: "Bharat BillPay (BBPS)", src: "/logos/bbps.svg" },
+  { name: "UPI", src: "/logos/upi.svg" },
+  { name: "Decentro", src: "/logos/decentro.svg" },
+  { name: "Setu", src: "/logos/setu.png" },
+  { name: "Protean", src: "/logos/protean.svg" },
+  { name: "DigiLocker", src: "/logos/digilocker.svg" },
+  { name: "HyperVerge", src: "/logos/hyperverge.svg" },
+  { name: "Signzy", src: "/logos/signzy.svg" },
+  { name: "WhatsApp Business API", src: "/logos/whatsapp.svg" },
+  { name: "Twilio", src: "/logos/twilio.svg" },
+  { name: "MSG91", src: "/logos/msg91.svg" },
+  { name: "Gupshup", src: "/logos/gupshup.png" },
+  { name: "OpenAI", src: "/logos/openai.svg" },
+  { name: "Google Gemini", src: "/logos/gemini.svg" },
+  { name: "Zoho", src: "/logos/zoho.svg" },
+  { name: "Salesforce", src: "/logos/salesforce.svg" },
+  { name: "HubSpot", src: "/logos/hubspot.svg" },
+  { name: "Google Maps", src: "/logos/google-maps.svg" },
+  { name: "Shopify", src: "/logos/shopify.svg" },
+  { name: "WooCommerce", src: "/logos/woocommerce.svg" },
+  { name: "WordPress", src: "/logos/wordpress.svg" },
+  { name: "Tally", src: "/logos/tally.svg" },
+  { name: "Google Workspace", src: "/logos/google-workspace.svg" },
+  { name: "Microsoft 365", src: "/logos/microsoft-365.svg" },
 ];
 
-const allLogos = [...iconLogos, ...imageLogos, ...iconLogos, ...imageLogos];
+const allLogos = [...imageLogos, ...imageLogos];
 
 export default function TrustedBy() {
+  const [failed, setFailed] = useState<Set<string>>(new Set());
+
+  const markFailed = (name: string) => {
+    setFailed((prev) => new Set(prev).add(name));
+  };
+
   return (
     <section className="trustedby-section">
-      <p className="trustedby-label">Powered by world-class technology</p>
+      <p className="trustedby-label">Powering Businesses Through Enterprise Integrations</p>
       <div className="trustedby-track-wrapper">
         <div className="trustedby-fade trustedby-fade-left" />
         <div className="trustedby-track">
           {allLogos.map((logo, i) => (
             <div key={`${logo.name}-${i}`} className="trustedby-logo">
-              {"Icon" in logo ? (
-                <logo.Icon size={28} style={{ opacity: 0.55, filter: "grayscale(1)" }} aria-label={logo.name} />
+              {failed.has(logo.name) ? (
+                <span className="trustedby-logo-text">{logo.name}</span>
               ) : (
                 <img
                   src={logo.src}
                   alt={logo.name}
                   height={28}
                   loading="lazy"
+                  onError={() => markFailed(logo.name)}
                   style={{ height: 28, width: "auto", maxWidth: 100, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)" }}
                 />
               )}

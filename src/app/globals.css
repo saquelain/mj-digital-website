@@ -4483,3 +4483,11 @@ img { max-width: 100%; display: block; }
   position: relative;
   z-index: 2;
 }
+
+.trustedby-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted, #999);
+  white-space: nowrap;
+  opacity: 0.7;
+}
