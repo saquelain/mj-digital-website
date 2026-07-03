@@ -154,22 +154,33 @@ export default function Navbar() {
                 {/* Products */}
                 <div className="nav-dropdown" onMouseEnter={() => open("products")} onMouseLeave={close}>
                   <button className={`nav-link${activeDropdown === "products" ? " active" : ""}`}>
-                    Our Products
+                    Our Brands
                     <ChevronDown size={13} className={`nav-chevron${activeDropdown === "products" ? " open" : ""}`} />
                   </button>
                   {activeDropdown === "products" && (
                     <div className="dropdown-simple" onMouseEnter={() => keep("products")} onMouseLeave={close}>
-                      {products.map((item) => (
-                        <Link key={item.name} href={item.href} className="dropdown-simple-item" onClick={() => setActiveDropdown(null)}>
-                          <div className="dropdown-simple-icon">
-                            <img src={item.logo} alt={item.name} style={{ width: 36, height: 36, borderRadius: 8, objectFit: "contain", backgroundColor: "white" }} />
-                          </div>
-                          <div>
-                            <div className="dropdown-simple-name">{item.name}</div>
-                            <div className="dropdown-simple-desc">{item.description}</div>
-                          </div>
-                        </Link>
-                      ))}
+                      {products.map((item) => {
+                        const hasLink = item.href && item.href !== "#";
+                        const Wrapper = hasLink ? Link : "div";
+                        return (
+                          <Wrapper
+                            key={item.name}
+                            {...(hasLink ? { href: item.href, onClick: () => setActiveDropdown(null) } : {})}
+                            className={`dropdown-simple-item${!hasLink ? " dropdown-simple-item--soon" : ""}`}
+                          >
+                            <div className="dropdown-simple-icon">
+                              <img src={item.logo} alt={item.name} />
+                            </div>
+                            <div>
+                              <div className="dropdown-simple-name">
+                                {item.name}
+                                {!hasLink && <span className="dropdown-simple-badge">Coming soon</span>}
+                              </div>
+                              <div className="dropdown-simple-desc">{item.description}</div>
+                            </div>
+                          </Wrapper>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
