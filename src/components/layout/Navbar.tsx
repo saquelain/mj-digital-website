@@ -230,11 +230,31 @@ export default function Navbar() {
             </button>
             {mobileExpanded === "products" && (
               <div className="mobile-dropdown-items">
-                {products.map((item) => (
-                  <Link key={item.name} href={item.href} className="mobile-dropdown-item" onClick={() => setMobileOpen(false)}>
-                    <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, borderRadius: 3, objectFit: "contain", backgroundColor: "white", flexShrink: 0 }} />{item.name}
-                  </Link>
-                ))}
+                {products.map((item) => {
+                  const hasLink = !!item.href && item.href !== "#";
+                  const inner = (
+                    <>
+                      <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, borderRadius: 3, objectFit: "contain", backgroundColor: "white", flexShrink: 0 }} />
+                      {item.name}
+                      {!hasLink && <span className="dropdown-simple-badge">Soon</span>}
+                    </>
+                  );
+
+                  return hasLink ? (
+                    <Link
+                      key={item.name}
+                      href={item.href as string}
+                      className="mobile-dropdown-item"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {inner}
+                    </Link>
+                  ) : (
+                    <div key={item.name} className="mobile-dropdown-item mobile-dropdown-item--soon">
+                      {inner}
+                    </div>
+                  );
+                })}
               </div>
             )}
 
