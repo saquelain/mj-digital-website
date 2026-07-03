@@ -2,16 +2,14 @@
 
 import { useState } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { serviceGroups } from "@/lib/site-data";
+
+const serviceReasons = serviceGroups.flatMap((group) =>
+  group.items.map((item) => item.name)
+);
 
 const reasons = [
-  "API Integration / Fintech APIs",
-  "CPaaS / WhatsApp & SMS Solutions",
-  "Web Development",
-  "Mobile App Development",
-  "White Label Fintech Platform",
-  "AI Chatbot & Automation",
-  "CRM / ERP Development",
-  "Cloud & DevOps",
+  ...serviceReasons,
   "General Inquiry",
   "Partnership / Reseller",
 ];
