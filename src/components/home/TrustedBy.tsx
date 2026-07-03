@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const imageLogos = [
   { name: "Razorpay", src: "/logos/razorpay.svg" },
@@ -38,11 +38,16 @@ const imageLogos = [
 const allLogos = [...imageLogos, ...imageLogos];
 
 export default function TrustedBy() {
-  const [failed, setFailed] = useState<Set<string>>(new Set());
+  const [status, setStatus] = useState<Record<string, "ok" | "failed">>({});
 
-  const markFailed = (name: string) => {
-    setFailed((prev) => new Set(prev).add(name));
-  };
+  useEffect(() => {
+    imageLogos.forEach((logo) => {
+      const img = new window.Image();
+      img.onload = () => setStatus((prev) => ({ ...prev, [logo.name]: "ok" }));
+      img.onerror = () => setStatus((prev) => ({ ...prev, [logo.name]: "failed" }));
+      img.src = logo.src;
+    });
+  }, []);
 
   return (
     <section className="trustedby-section">
@@ -50,22 +55,25 @@ export default function TrustedBy() {
       <div className="trustedby-track-wrapper">
         <div className="trustedby-fade trustedby-fade-left" />
         <div className="trustedby-track">
-          {allLogos.map((logo, i) => (
-            <div key={`${logo.name}-${i}`} className="trustedby-logo">
-              {failed.has(logo.name) ? (
-                <span className="trustedby-logo-text">{logo.name}</span>
-              ) : (
-                <img
-                  src={logo.src}
-                  alt={logo.name}
-                  height={28}
-                  loading="lazy"
-                  onError={() => markFailed(logo.name)}
-                  style={{ height: 28, width: "auto", maxWidth: 100, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)" }}
-                />
-              )}
-            </div>
-          ))}
+          {allLogos.map((logo, i) => {
+            const state = status[logo.name];
+            return (
+              <div key={`${logo.name}-${i}`} className="trustedby-logo">
+                {state === "ok" ? (
+                  <img
+                    src={logo.src}
+                    alt={logo.name}
+                    height={28}
+                    style={{ height: 28, width: "auto", maxWidth: 100, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)" }}
+                  />
+                ) : state === "failed" ? (
+                  <span className="trustedby-logo-text">{logo.name}</span>
+                ) : (
+                  <span className="trustedby-logo-text" style={{ opacity: 0 }}>{logo.name}</span>
+                )}
+              </div>
+            );
+          })}
         </div>
         <div className="trustedby-fade trustedby-fade-right" />
       </div>
