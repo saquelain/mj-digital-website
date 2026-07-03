@@ -76,7 +76,7 @@ export default function Hero() {
           >
             Explore Services <ArrowRight size={16} />
           </AnimatedButton>
-          <Link href="/products/ezeepay" className="hero-btn-outline">
+          <Link href="https://ezeepay.app" className="hero-btn-outline" target="_blank" rel="noopener noreferrer">
             View Products
           </Link>
         </div>

@@ -9,9 +9,9 @@ const values = [
 ];
 
 const products = [
-  { name: "EzeePay",    tag: "Fintech",   desc: "AEPS, money transfer, bill payments, and Aadhaar services — a complete fintech merchant platform.",                              href: "/products/ezeepay",    color: "#22c55e" },
-  { name: "Zoki",       tag: "FASTag",    desc: "WhatsApp engagement, customer communication, marketing automation, and lead management — in one inbox.",                         href: "/products/zoki",       color: "#3b82f6" },
-  { name: "Mobilocker", tag: "Security",  desc: "Digital document storage, secure verification, and data protection for businesses that take privacy seriously.",                 href: "/products/mobilocker", color: "#a855f7" },
+  { name: "EzeePay",    tag: "Fintech",   desc: "AEPS, money transfer, bill payments, and Aadhaar services — a complete fintech merchant platform.",                              href: "https://ezeepay.app",    color: "#22c55e" },
+  { name: "Zoki",       tag: "FASTag",    desc: "WhatsApp engagement, customer communication, marketing automation, and lead management — in one inbox.",                         href: "https://zoki-website.vercel.app/",       color: "#3b82f6" },
+  { name: "Mobilocker", tag: "Security",  desc: "Digital document storage, secure verification, and data protection for businesses that take privacy seriously.",                 href: "https://mobilocker.app", color: "#a855f7" },
   { name: "Cashlo",     tag: "Fintech",   desc: "UPI Sound Box, QuickServices, and merchant tools built for rural and semi-urban retailers across India.",                        href: "https://cashlo-final-fxmt.vercel.app/", color: "#E5182A" },
 ];
 
@@ -49,7 +49,7 @@ export default function AboutValues() {
         </div>
         <div className="about-products-grid">
           {products.map((p) => (
-            <Link key={p.name} href={p.href} className="about-product-card">
+            <Link key={p.name} href={p.href} className="about-product-card" target="_blank" rel="noopener noreferrer">
               <div className="about-product-stripe" style={{ background: p.color }} />
               <div className="about-product-body">
                 <div className="about-product-tag" style={{ color: p.color, borderColor: `${p.color}33`, background: `${p.color}11` }}>

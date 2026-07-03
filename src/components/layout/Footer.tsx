@@ -35,12 +35,12 @@ const socials = [
 ];
 
 const productLinks = [
-  { name: "EzeePay",    href: "/products/ezeepay" },
-  { name: "Zoki",       href: "/products/zoki" },
-  { name: "Mobilocker", href: "/products/mobilocker" },
+  { name: "EzeePay",    href: "https://ezeepay.app/" },
+  { name: "Zoki",       href: "https://zoki-website.vercel.app/" },
+  { name: "Mobilocker", href: "https://mobilocker.app/" },
   { name: "Cashlo",     href: "https://cashlo-final-fxmt.vercel.app/" },
   { name: "Skylist",    href: null },
-  { name: "Adkea",      href: null },
+  { name: "Adkea",      href: "https://adkea.co/" },
   { name: "Creditlo",   href: null },
 ];
 

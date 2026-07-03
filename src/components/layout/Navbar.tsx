@@ -188,6 +188,8 @@ export default function Navbar() {
                             href={item.href as string}
                             className="dropdown-simple-item"
                             onClick={() => setActiveDropdown(null)}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             {inner}
                           </Link>
@@ -271,6 +273,8 @@ export default function Navbar() {
                       href={item.href as string}
                       className="mobile-dropdown-item"
                       onClick={() => setMobileOpen(false)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {inner}
                     </Link>
