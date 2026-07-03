@@ -211,7 +211,7 @@ export default function Navbar() {
 
               <div className="navbar-divider" />
 
-              <Link href="/contact" className="navbar-cta">
+              <Link href="/contact#contact-form" className="navbar-cta">
                 Let&apos;s Talk <ArrowRight size={14} />
               </Link>
             </div>

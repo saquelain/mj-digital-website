@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { serviceGroups } from "@/lib/site-data";
 
@@ -26,6 +26,29 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [highlight, setHighlight] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash !== "#contact-form") return;
+
+    const el = document.getElementById("contact-form");
+    if (!el) return;
+
+    // slight delay lets layout/fonts settle before measuring scroll position
+    const scrollTimer = setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setHighlight(true);
+    }, 150);
+
+    const highlightTimer = setTimeout(() => setHighlight(false), 2200);
+
+    return () => {
+      clearTimeout(scrollTimer);
+      clearTimeout(highlightTimer);
+    };
+  }, []);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -45,7 +68,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="contact-form-card">
+    <div id="contact-form" className="contact-form-card">
       {submitted ? (
         <div className="contact-success">
           <div className="contact-success-icon">
