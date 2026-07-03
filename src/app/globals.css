@@ -345,7 +345,8 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 10px;
-  min-width: 320px;
+  width: 400px;
+  max-width: calc(100vw - 40px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.11);
   z-index: 200;
   animation: dropIn 0.16s ease both;
