@@ -160,14 +160,10 @@ export default function Navbar() {
                   {activeDropdown === "products" && (
                     <div className="dropdown-simple" onMouseEnter={() => keep("products")} onMouseLeave={close}>
                       {products.map((item) => {
-                        const hasLink = item.href && item.href !== "#";
-                        const Wrapper = hasLink ? Link : "div";
-                        return (
-                          <Wrapper
-                            key={item.name}
-                            {...(hasLink ? { href: item.href, onClick: () => setActiveDropdown(null) } : {})}
-                            className={`dropdown-simple-item${!hasLink ? " dropdown-simple-item--soon" : ""}`}
-                          >
+                        const hasLink = !!item.href && item.href !== "#";
+
+                        const inner = (
+                          <>
                             <div className="dropdown-simple-icon">
                               <img src={item.logo} alt={item.name} />
                             </div>
@@ -178,7 +174,22 @@ export default function Navbar() {
                               </div>
                               <div className="dropdown-simple-desc">{item.description}</div>
                             </div>
-                          </Wrapper>
+                          </>
+                        );
+
+                        return hasLink ? (
+                          <Link
+                            key={item.name}
+                            href={item.href as string}
+                            className="dropdown-simple-item"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            {inner}
+                          </Link>
+                        ) : (
+                          <div key={item.name} className="dropdown-simple-item dropdown-simple-item--soon">
+                            {inner}
+                          </div>
                         );
                       })}
                     </div>
