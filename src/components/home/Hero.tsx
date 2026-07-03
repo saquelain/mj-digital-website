@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Rocket } from "lucide-react";
-import { Boxes } from "@/components/ui/background-boxes";
+import { motion, useScroll, useTransform } from "motion/react";
 import { LinkPreview } from "@/components/ui/link-preview";
 import AnimatedButton from "@/components/ui/AnimatedButton";
 
@@ -23,21 +23,30 @@ const products = [
 ];
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
   return (
-    <section className="hero-section">
+    <section className="hero-section" ref={sectionRef}>
 
-      {/* Dark bg base */}
-      <div className="hero-bg-dark" />
+      {/* Background image — outer layer handles scroll parallax, inner handles slow zoom */}
+      <div className="hero-bg-image-wrap">
+        <motion.div className="hero-bg-parallax" style={{ y: bgY }}>
+          <div
+            className="hero-bg-zoom"
+            style={{ backgroundImage: "url('/mj-hero-bg.webp')" }}
+          />
+        </motion.div>
+      </div>
 
-      <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
-        <Boxes />
-        </div>
+      {/* Dark overlay for text contrast */}
+      <div className="hero-bg-overlay" />
 
-      {/* Background boxes — the interactive grid */}
-      <div className="hero-boxes-mask" />
-      
-
-      {/* Content — sits above boxes */}
+      {/* Content — sits above image/overlay */}
       <div className="hero-content">
 
         {/* Badge */}
