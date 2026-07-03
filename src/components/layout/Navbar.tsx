@@ -10,7 +10,12 @@ import { serviceGroups, products } from "@/lib/site-data";
 const staticLinks = [
   { name: "Developers", href: "/services/api-solutions" },
   { name: "About", href: "/about" },
-  { name: "Blog", href: "/blog" },
+];
+
+const resourceLinks = [
+  { name: "Blog", href: "/blog", description: "Insights, updates & how-tos" },
+  { name: "News & Articles", href: "/news", description: "Company news & press coverage" },
+  { name: "Wall of Love", href: "/wall-of-love", description: "What our customers say about us" },
 ];
 
 // Flattened sub-groups (used by the mega menu detail panel)
@@ -207,6 +212,26 @@ export default function Navbar() {
                 {staticLinks.map((link) => (
                   <Link key={link.name} href={link.href} className="nav-link">{link.name}</Link>
                 ))}
+
+                {/* Resources */}
+                <div className="nav-dropdown" onMouseEnter={() => open("resources")} onMouseLeave={close}>
+                  <button className={`nav-link${activeDropdown === "resources" ? " active" : ""}`}>
+                    Resources
+                    <ChevronDown size={13} className={`nav-chevron${activeDropdown === "resources" ? " open" : ""}`} />
+                  </button>
+                  {activeDropdown === "resources" && (
+                    <div className="dropdown-simple dropdown-simple--text-only" onMouseEnter={() => keep("resources")} onMouseLeave={close}>
+                      {resourceLinks.map((item) => (
+                        <Link key={item.name} href={item.href} className="dropdown-simple-item" onClick={() => setActiveDropdown(null)}>
+                          <div>
+                            <div className="dropdown-simple-name">{item.name}</div>
+                            <div className="dropdown-simple-desc">{item.description}</div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </nav>
 
               <div className="navbar-divider" />
@@ -293,6 +318,20 @@ export default function Navbar() {
             {staticLinks.map((link) => (
               <Link key={link.name} href={link.href} className="mobile-nav-link" onClick={() => setMobileOpen(false)}>{link.name}</Link>
             ))}
+
+            <button className="mobile-nav-link" onClick={() => setMobileExpanded(mobileExpanded === "resources" ? null : "resources")}>
+              Resources
+              <ChevronDown size={16} style={{ color: "var(--text-muted)", transform: mobileExpanded === "resources" ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }} />
+            </button>
+            {mobileExpanded === "resources" && (
+              <div className="mobile-dropdown-items">
+                {resourceLinks.map((item) => (
+                  <Link key={item.name} href={item.href} className="mobile-dropdown-item" onClick={() => setMobileOpen(false)}>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
             <div className="mobile-cta-wrap">
               <Link href="/contact" className="mobile-cta" onClick={() => setMobileOpen(false)}>
                 Let&apos;s Talk <ArrowRight size={16} />
