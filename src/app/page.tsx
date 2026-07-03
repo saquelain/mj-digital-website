@@ -8,6 +8,7 @@ import Testimonials from "@/components/home/Testimonials";
 import FAQs from "@/components/home/FAQs";
 import CTABanner from "@/components/home/CTABanner";
 import ProductShowcase from "@/components/home/ProductShowcase";
+import PartnersField from "@/components/home/PartnersField";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -127,6 +128,7 @@ export default function Home() {
         <ProductShowcase />
         <Services />
         <WhyChooseUs />
+        <PartnersField />
         <Testimonials />
         <Industries />
         <TechStack />
