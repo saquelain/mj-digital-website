@@ -4608,3 +4608,35 @@ img { max-width: 100%; display: block; }
 @media (max-width: 640px) {
   #ptn { height: auto; min-height: 560px; padding: 96px 0; }
 }
+
+.blog-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.blog-pagination-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #e5e5e7);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary, #222);
+  transition: background-color 0.2s ease;
+}
+
+.blog-pagination-btn:hover:not(.blog-pagination-btn--disabled) {
+  background-color: var(--surface, #f8f8f9);
+}
+
+.blog-pagination-btn--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.blog-pagination-current {
+  font-size: 14px;
+  color: var(--text-muted, #666);
+}
