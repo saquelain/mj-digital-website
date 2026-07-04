@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap');
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
-
 /* ============================================================
    MJ DIGITAL SERVICES — Global Styles (Pure CSS, no Tailwind)
    ============================================================ */
@@ -4639,4 +4639,125 @@ img { max-width: 100%; display: block; }
 .blog-pagination-current {
   font-size: 14px;
   color: var(--text-muted, #666);
+}
+
+.wol-root {
+  --wol-bg: #F7F7FA;
+  --wol-surface: #FFFFFF;
+  --wol-ink: #12172A;
+  --wol-muted: #6B7280;
+  --wol-red: #E5182A;
+  --wol-blue: #3B82F6;
+  --wol-line: rgba(18,23,42,0.10);
+  --wol-mono: var(--wol-mono-font), ui-monospace, monospace;
+
+  background: var(--wol-bg);
+  color: var(--wol-ink);
+  overflow-x: hidden;
+}
+
+/* ---------- Hero ---------- */
+.wol-hero {
+  padding: clamp(64px, 10vh, 110px) 24px 40px;
+  text-align: center;
+}
+.wol-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--wol-mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--wol-muted);
+  background: #fff;
+  border: 1px solid var(--wol-line); border-radius: 999px;
+  padding: 8px 18px; margin-bottom: 28px;
+}
+.wol-eyebrow b { color: var(--wol-red); }
+.wol-hero-title {
+  color: var(--wol-ink);
+  font-weight: 800; font-size: clamp(40px, 8vw, 96px);
+  line-height: 0.98; letter-spacing: -0.03em;
+}
+.wol-hero-line { display: block; overflow: hidden; padding: 0.05em 0; }
+.wol-hero-sub {
+  max-width: 480px; margin: 24px auto 0; color: var(--wol-muted); font-size: 16px; line-height: 1.6;
+}
+.wol-hero-hint {
+  margin-top: 30px; font-family: var(--wol-mono); font-size: 13px; color: var(--wol-muted);
+}
+
+/* ---------- Marquee ---------- */
+.wol-marquee { margin: 48px 0 0; transform: rotate(-1deg); display: flex; flex-direction: column; gap: 12px; }
+.wol-mrow { display: flex; width: max-content; will-change: transform; }
+.wol-mrow-inner { display: flex; gap: 12px; padding-right: 12px; }
+.wol-chip {
+  white-space: nowrap; background: #fff; border: 1px solid var(--wol-line);
+  border-radius: 999px; padding: 10px 18px; font-size: 13.5px; color: var(--wol-ink); font-weight: 500;
+  box-shadow: 0 2px 8px rgba(18,23,42,0.05);
+}
+.wol-chip--alt { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.2); }
+
+/* ---------- Wall ---------- */
+.wol-wall-section { position: relative; padding: 100px clamp(16px,4vw,56px) 60px; max-width: 1440px; margin: 0 auto; }
+.wol-wall-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
+.wol-wall-head h2 { color: var(--wol-ink); font-size: clamp(30px, 4vw, 48px); font-weight: 800; letter-spacing: -0.02em; }
+.wol-wall-sub { font-family: var(--wol-mono); font-size: 13px; color: var(--wol-muted); }
+.wol-wall { columns: 3 300px; column-gap: 22px; }
+
+.wol-card {
+  position: relative; break-inside: avoid;
+  background: var(--wol-surface); border: 1px solid var(--wol-line); border-left: 3px solid var(--wol-red);
+  border-radius: 10px; padding: 22px 20px; margin: 0 0 22px;
+  box-shadow: 0 1px 2px rgba(18,23,42,0.06), 0 10px 24px -10px rgba(18,23,42,0.15);
+  cursor: grab; will-change: transform; touch-action: pan-y;
+}
+.wol-card:active { cursor: grabbing; }
+.wol-card.wol-lifted { box-shadow: 0 6px 10px rgba(18,23,42,0.08), 0 30px 50px -18px rgba(18,23,42,0.28); }
+.wol-card-tag { font-family: var(--wol-mono); font-size: 11px; letter-spacing: 0.04em; }
+.wol-card-quote { font-size: 14.5px; line-height: 1.6; color: var(--wol-ink); margin-top: 14px; }
+.wol-card-person { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+.wol-avatar {
+  width: 36px; height: 36px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; color: #fff; font-family: var(--wol-mono); font-weight: 700; font-size: 12.5px;
+}
+.wol-card-name { font-weight: 600; font-size: 13.5px; color: var(--wol-ink); }
+.wol-card-role { font-family: var(--wol-mono); font-size: 11px; color: var(--wol-muted); margin-top: 2px; }
+.wol-heart-btn {
+  margin-left: auto; flex: none; display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--wol-mono); font-size: 11.5px; font-weight: 600; color: var(--wol-muted);
+  background: none; border: 1px solid var(--wol-line); border-radius: 999px; padding: 5px 10px; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.wol-heart-btn:hover { border-color: var(--wol-red); color: var(--wol-red); }
+.wol-heart-btn.wol-loved { border-color: var(--wol-red); color: var(--wol-red); background: rgba(229,24,42,0.06); }
+.wol-heart-particle { position: fixed; z-index: 99; pointer-events: none; font-size: 16px; color: var(--wol-red); }
+
+/* ---------- Featured — deliberately dark, a contrast beat against the light wall ---------- */
+.wol-featured { position: relative; background: #0A0E1A; margin-top: 60px; }
+.wol-featured-inner {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 80px clamp(20px,6vw,80px); text-align: center;
+}
+.wol-featured-mono { font-family: var(--wol-mono); color: #7CA8FF; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 30px; }
+.wol-featured blockquote { color: #F2F4FA; font-weight: 500; font-size: clamp(24px, 4vw, 48px); line-height: 1.25; max-width: 960px; }
+.wol-featured .wol-w { opacity: 0.14; display: inline-block; }
+.wol-accent { color: #FF6B5C; }
+.wol-featured-who { margin-top: 40px; display: flex; align-items: center; gap: 12px; justify-content: center; }
+.wol-featured-who .wol-card-name { color: #F2F4FA; }
+
+/* ---------- CTA ---------- */
+.wol-cta-section { text-align: center; padding: 120px 20px 140px; }
+.wol-cta-section h2 { color: var(--wol-ink); font-size: clamp(32px, 5vw, 56px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+.wol-cta-section p { color: var(--wol-muted); font-size: 16px; margin-bottom: 34px; }
+.wol-cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--wol-red); color: #fff; font-weight: 700; font-size: 17px;
+  padding: 16px 32px; border-radius: 999px; transition: transform 0.2s ease;
+  box-shadow: 0 8px 24px rgba(229,24,42,0.25);
+}
+.wol-cta-btn:hover { transform: translateY(-2px); }
+
+@media (max-width: 720px) {
+  .wol-wall { columns: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wol-mrow { transform: none !important; }
 }
