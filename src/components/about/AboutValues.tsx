@@ -13,6 +13,9 @@ const products = [
   { name: "Zoki",       tag: "FASTag",    desc: "WhatsApp engagement, customer communication, marketing automation, and lead management — in one inbox.",                         href: "https://zoki-website.vercel.app/",       color: "#3b82f6" },
   { name: "Mobilocker", tag: "Security",  desc: "Digital document storage, secure verification, and data protection for businesses that take privacy seriously.",                 href: "https://mobilocker.app", color: "#a855f7" },
   { name: "Cashlo",     tag: "Fintech",   desc: "UPI Sound Box, QuickServices, and merchant tools built for rural and semi-urban retailers across India.",                        href: "https://cashlo-final-fxmt.vercel.app/", color: "#E5182A" },
+  { name: "Skylist",    tag: "Travel",    desc: "A travel and booking platform in the making — flights, stays, and itineraries in one place.",                                    href: null, color: "#0EA5E9" },
+  { name: "Adkea",      tag: "Marketing", desc: "Branding, digital marketing, and creative strategy — the agency arm of the MJ Digital group.",                                   href: "https://adkea.co/", color: "#F97316" },
+  { name: "Creditlo",   tag: "Fintech",   desc: "A credit and lending platform on the way — simple, transparent access to credit.",                                               href: null, color: "#7C3AED" },
 ];
 
 export default function AboutValues() {
@@ -41,28 +44,46 @@ export default function AboutValues() {
       {/* Products */}
       <section className="about-products">
         <div className="about-products-header">
-          <div className="about-section-label">Our Products</div>
-          <h2 className="about-section-title">Three platforms. One technology vision.</h2>
+          <div className="about-section-label">Our Brands</div>
+          <h2 className="about-section-title">Seven brands. One technology vision.</h2>
           <p className="about-values-sub">
-            MJ Digital Services is the technology arm and parent company behind our flagship digital products.
+            MJ Digital Services is the technology arm and parent company behind our family of digital products.
           </p>
         </div>
         <div className="about-products-grid">
-          {products.map((p) => (
-            <Link key={p.name} href={p.href} className="about-product-card" target="_blank" rel="noopener noreferrer">
-              <div className="about-product-stripe" style={{ background: p.color }} />
-              <div className="about-product-body">
-                <div className="about-product-tag" style={{ color: p.color, borderColor: `${p.color}33`, background: `${p.color}11` }}>
-                  {p.tag}
+          {products.map((p) => {
+            const hasLink = !!p.href;
+            const card = (
+              <>
+                <div className="about-product-stripe" style={{ background: p.color }} />
+                <div className="about-product-body">
+                  <div className="about-product-tag" style={{ color: p.color, borderColor: `${p.color}33`, background: `${p.color}11` }}>
+                    {p.tag}
+                  </div>
+                  <h3 className="about-product-name">
+                    {p.name}
+                    {!hasLink && <span className="about-product-badge">Coming soon</span>}
+                  </h3>
+                  <p className="about-product-desc">{p.desc}</p>
+                  {hasLink && (
+                    <div className="about-product-link">
+                      Explore {p.name} <ArrowRight size={14} />
+                    </div>
+                  )}
                 </div>
-                <h3 className="about-product-name">{p.name}</h3>
-                <p className="about-product-desc">{p.desc}</p>
-                <div className="about-product-link">
-                  Explore {p.name} <ArrowRight size={14} />
-                </div>
+              </>
+            );
+
+            return hasLink ? (
+              <Link key={p.name} href={p.href as string} className="about-product-card" target="_blank" rel="noopener noreferrer">
+                {card}
+              </Link>
+            ) : (
+              <div key={p.name} className="about-product-card about-product-card--soon">
+                {card}
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 
