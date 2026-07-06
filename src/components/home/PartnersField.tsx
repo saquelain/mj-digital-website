@@ -35,7 +35,7 @@ const partnerNames = [
   "NSDL Payments Bank", "Bharat BillPay", "MobiKwik", "AU Small Finance Bank",
   "Jio Payments Bank", "InsuranceDekho", "Coverfox", "Decentro", "Fino Payments Bank",
   "Shivalik Small Finance Bank", "OneAssist", "SabPaisa", "Tax2Win", "VakilGiri",
-  "eTrav", "Oxymoney", "Unlimit", "Elephant", "Fingspring", "MPay", "INRDeals", "Azmarq",
+  "eTrav", "Oxymoney", "Unlimit", "Elephant", "Finspring", "MPay", "INRDeals", "Azmarq",
 ];
 
 const partners: Partner[] = partnerNames.map((name, i) => ({
