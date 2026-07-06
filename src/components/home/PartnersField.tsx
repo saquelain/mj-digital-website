@@ -62,16 +62,17 @@ export default function PartnersField() {
     // fall back silently to the initials tile if missing.
     const images = new Map<string, HTMLImageElement | "error">();
     partners.forEach((p) => {
-    const img = new window.Image();
-    img.onload = () => images.set(p.slug, img);
-    img.onerror = () => {
-        if (img.src.endsWith(".svg")) {
-        img.src = `/partners/${p.slug}.png`; // retry as png
-        } else {
-        images.set(p.slug, "error"); // both failed, fall back to initials
-        }
-    };
-    img.src = `/partners/${p.slug}.svg`;
+      const exts = ["svg", "png", "webp"];
+      let i = 0;
+      const img = new window.Image();
+      const tryNext = () => {
+        if (i >= exts.length) { images.set(p.slug, "error"); return; }
+        img.src = `/partners/${p.slug}.${exts[i]}`;
+        i++;
+      };
+      img.onload = () => images.set(p.slug, img);
+      img.onerror = tryNext;
+      tryNext();
     });
 
     const hash = (x: number, y: number) => {
