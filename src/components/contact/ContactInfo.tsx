@@ -4,7 +4,6 @@ const contactInfo = [
   { icon: Mail,   label: "Email Us",       value: "business@mjdigitalservices.com", sub: "We reply within 24 hours",          href: "mailto:business@mjdigitalservices.com" },
   { icon: Phone,  label: "Call Us",        value: "+91 98765 43210",                sub: "Mon – Sat, 10 AM – 7 PM IST",       href: "tel:+919876543210" },
   { icon: MapPin, label: "Office",         value: "7th Floor AWFIS, Bhutani Techno Park, Sector 127, Noida, UP 201313", sub: "MJ Digital Services Pvt Ltd", href: "https://maps.google.com/?q=Bhutani+Techno+Park+Sector+127+Noida+201313" },
-  { icon: Clock,  label: "Business Hours", value: "Mon – Sat: 9:30 AM – 6:30 PM",  sub: "Sunday: Closed",                    href: null },
 ];
 
 export default function ContactInfo() {

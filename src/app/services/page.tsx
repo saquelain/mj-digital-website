@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { serviceGroups } from "@/lib/site-data";
+import "@/components/services/shared/service-shared.css";
 
 export default function ServicesPage() {
   return (
