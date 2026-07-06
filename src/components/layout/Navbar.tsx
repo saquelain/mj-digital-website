@@ -23,7 +23,7 @@ const flatSubs = serviceGroups.flatMap((group) =>
   group.items.map((sub) => ({
     category: group.label,
     sub,
-    slug: sub.href.replace("/services/", ""),
+    slug: (sub as { slug?: string }).slug ?? sub.href.replace("/services/", ""),
   }))
 );
 
@@ -365,7 +365,7 @@ export default function Navbar() {
                       <div className="mm-cat-label">{group.label}</div>
                       <div className="mm-cat-subs">
                         {group.items.map((item) => {
-                          const slug = item.href.replace("/services/", "");
+                          const slug = (item as { slug?: string }).slug ?? item.href.replace("/services/", "");
                           const isActive = activeSub?.slug === slug;
                           return (
                             <Link
