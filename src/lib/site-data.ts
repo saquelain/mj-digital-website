@@ -269,6 +269,6 @@ export const products = [
   { name: "Mobilocker", description: "Secure Device Protection & Insurance Services", href: "https://mobilocker.app/", logo: "/mobilocker-icon.webp" },
   { name: "Skylist", description: "Coming soon", href: null, logo: "/skylist-logo.webp" },
   { name: "Cashlo", description: "UPI Cashpoint Platform for Every Shopkeeper", href: "https://cashlo-final-fxmt.vercel.app/", logo: "/cashlo-icon.svg" },
-  { name: "Adkea", description: "Coming soon", href: "https://adkea.co/", logo: "/adkea-logo.webp" },
+  { name: "Adkea", description: "Branding, Digital Marketing & Creative Strategy", href: "https://adkea.co/", logo: "/adkea-logo.webp" },
   { name: "Creditlo", description: "Coming soon", href: null, logo: "/creditlo-logo.webp" },
 ];
