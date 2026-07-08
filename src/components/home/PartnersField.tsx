@@ -8,7 +8,22 @@ interface Partner {
   slug: string;
   abbr: string;
   color: string;
+  ext?: string;
 }
+
+const extOverrides: Record<string, string> = {
+  "Protean eGov Technologies": "webp",
+  "NSDL Payments Bank": "png",
+  "Coverfox": "png",
+  "Shivalik Small Finance Bank": "png",
+  "SabPaisa": "png",
+  "VakilGiri": "webp",
+  "Oxymoney": "png",
+  "Finspring": "png",
+  "MPay": "png",
+  "INRDeals": "png",
+  "Azmarq": "png",
+};
 
 const palette = [
   "#6366f1", "#ec4899", "#14b8a6", "#f59e0b", "#3b82f6",
@@ -43,6 +58,7 @@ const partners: Partner[] = partnerNames.map((name, i) => ({
   slug: slugify(name),
   abbr: abbreviate(name),
   color: palette[i % palette.length],
+  ext: extOverrides[name],
 }));
 
 export default function PartnersField() {
@@ -62,7 +78,7 @@ export default function PartnersField() {
     // fall back silently to the initials tile if missing.
     const images = new Map<string, HTMLImageElement | "error">();
     partners.forEach((p) => {
-      const exts = ["svg", "png", "webp"];
+      const exts = p.ext ? [p.ext] : ["svg", "png", "webp"];
       let i = 0;
       const img = new window.Image();
       const tryNext = () => {
